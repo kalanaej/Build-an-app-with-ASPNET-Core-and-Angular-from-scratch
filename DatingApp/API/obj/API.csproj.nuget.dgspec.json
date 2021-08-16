@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj": {}
+    "d:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj": {
+    "d:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj",
+        "projectUniqueName": "d:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj",
+        "projectPath": "d:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\obj\\",
+        "outputPath": "d:\\Kodez\\Udemy Courses\\4. Build an app with ASPNET Core and Angular from scratch\\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,7 +21,6 @@
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,6 +39,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.0-preview.8.20407.4, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
