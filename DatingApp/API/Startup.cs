@@ -18,9 +18,13 @@ namespace API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IConfiguration _config;
+
+        // Double click on config and in quick fixes, select initialize field from parameter
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -28,9 +32,9 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options => 
+            services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlite("Connection string");
+                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
             services.AddControllers();
