@@ -18,6 +18,7 @@ namespace API.Controllers
             _context = context;
         }
 
+
         // Crerated to register a user
         [HttpPost("register")]
         public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto)
@@ -44,6 +45,30 @@ namespace API.Controllers
 
             return user;
         }
+
+
+        [HttpPost("login")]
+        public async Task<ActionResult<AppUser>> Login(LoginDto loginDto)
+        {
+            // Get the user from database
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
+
+            if (user == null)
+                return Unauthorized("Invalid username");
+
+            using var hmac = new HMACSHA512(user.PasswordSalt);
+
+            var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
+
+            for (int i = 0; i < computeHash.Length; i++)
+            {
+                if(computeHash[i] != user.PasswordHash[i])
+                    return Unauthorized("Invalid Password");
+            }
+
+            return user;
+        }
+
 
         private async Task<bool> UserExists(string username)
         {
