@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="#">Dating App</a>
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">Matches</a>
             </li>
@@ -12,10 +12,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Messages</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()" href="#">Logout</a>
+            </li>
         </ul>
 
+        <div class="dropdown" *ngIf="loggedIn">
+            <a class="dropdown-toogle text-light">Welcome User</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item">Edit Profile</a>
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+        </div>
+
         <!-- To make a form as a Angular form use "#loginForm="ngForm" -->
-        <form #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+        <form *ngIf="!loggedIn" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
             <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text" placeholder="Username">
             <input name="password" [(ngModel)]="model.password" class="form-control  mr-sm-2" type="password" placeholder="Password">
             <button class="btn btn-outline-success" type="submit">Login</button>
