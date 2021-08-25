@@ -23,7 +23,6 @@ namespace API.Controllers
         }
 
 
-        [Authorize]
         [HttpGet("not-found")]
         public ActionResult<AppUser> GetNotFound()
         {
@@ -35,7 +34,6 @@ namespace API.Controllers
         }
 
 
-        [Authorize]
         [HttpGet("server-error")]
         public ActionResult<string> GetServerError()
         {
@@ -47,7 +45,6 @@ namespace API.Controllers
         }
 
 
-        [Authorize]
         [HttpGet("bad-request")]
         public ActionResult<string> GetBadRequest()
         {
