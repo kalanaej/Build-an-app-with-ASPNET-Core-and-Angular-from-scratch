@@ -59,3 +59,4 @@ D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Data\UserSeedData.json
