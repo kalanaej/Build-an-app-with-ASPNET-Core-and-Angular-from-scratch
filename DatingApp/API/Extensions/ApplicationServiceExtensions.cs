@@ -14,6 +14,9 @@ namespace API.Extensions
             // Call ITokenService interface and TokenService Service
             services.AddScoped<ITokenService, TokenService>();
 
+            // Add repository interface and service
+            services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
