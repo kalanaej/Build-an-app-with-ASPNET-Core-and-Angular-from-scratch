@@ -22,7 +22,10 @@ export class AppComponent implements OnInit{
   }
 
   setCurrentUser() {
-    const user: User = JSON.parse(localStorage.getItem('user') ?? '{}');
+
+    // Always looged in without username fixed here
+    // If you used undefined keyword that told in Q/A section, apply below edit to the code
+    const user: User = JSON.parse(localStorage.getItem('user')!);
     this.accountService.setCurrentUser(user);
   }
 }
