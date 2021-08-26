@@ -18,7 +18,7 @@ namespace API.Extensions
             // Add repository interface and service
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly)
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             services.AddDbContext<DataContext>(options =>
             {
