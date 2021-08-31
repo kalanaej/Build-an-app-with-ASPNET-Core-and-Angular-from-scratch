@@ -9,7 +9,7 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberListComponent implements OnInit {
 
-  members: Member[] | undefined;
+  members!: Member[];
 
   constructor(private memberService: MembersService) { }
 
