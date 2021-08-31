@@ -48,6 +48,8 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
-    this.currentUserSource.next(undefined);
+
+    // Use null! instead of undefined
+    this.currentUserSource.next(null!);
   }
 }
