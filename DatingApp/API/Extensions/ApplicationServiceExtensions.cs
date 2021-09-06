@@ -12,6 +12,9 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            // Link ClodinarySettings in appsettings.json
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
             // Call ITokenService interface and TokenService Service
             services.AddScoped<ITokenService, TokenService>();
 
