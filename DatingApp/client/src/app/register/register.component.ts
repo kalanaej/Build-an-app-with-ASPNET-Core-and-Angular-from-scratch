@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
 
@@ -13,11 +14,11 @@ export class RegisterComponent implements OnInit {
   // EventEmitter should come from Angular/Core package. Not from other packages
   @Output() cancelRegister = new EventEmitter
 
-  model: any = {};
   registerForm!: FormGroup;
   maxDate!: Date;
+  validationErrors: string[] = [];
 
-  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -49,14 +50,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value);
-    // this.accountService.register(this.model).subscribe(response => {
-    //   console.log(response);
-    //   this.cancel();
-    // }, error => {
-    //   console.log(error);
-    //   this.toastr.error(error.error );
-    // })
+    this.accountService.register(this.registerForm.value).subscribe(response => {
+      this.router.navigateByUrl('/members');
+    }, error => {
+      this.validationErrors = error;
+    })
   }
 
   cancel() {
