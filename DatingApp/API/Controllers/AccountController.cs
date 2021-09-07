@@ -6,6 +6,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,12 @@ namespace API.Controllers
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
 
+        private readonly IMapper _mapper;
 
         // Inject our token service
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
             _tokenService = tokenService;
         }
@@ -32,18 +35,15 @@ namespace API.Controllers
             if (await UserExists(registerDto.Username))
                 return BadRequest("Username is taken.");
 
+            var user = _mapper.Map<AppUser>(registerDto);
+
             // Use hash function to encrypt passwords
             using var hmac = new HMACSHA512();
 
-            // Create a new user
-            var user = new AppUser
-            {
-                UserName = registerDto.Username.ToLower(),
-
-                // Convert password into byte array
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
-            };
+            user.UserName = registerDto.Username.ToLower();
+            // Convert password into byte array
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
 
             // Add the user
             _context.Users.Add(user);
@@ -52,7 +52,8 @@ namespace API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                KnownAs = user.KnownAS
             };
         }
 
@@ -62,7 +63,7 @@ namespace API.Controllers
         {
             // Get the user from database
             // We cannot login if you do not add "Include(p =>p.Photos)" part
-            var user = await _context.Users.Include(p =>p.Photos).SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
+            var user = await _context.Users.Include(p => p.Photos).SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null)
                 return Unauthorized("Invalid username");
@@ -73,7 +74,7 @@ namespace API.Controllers
 
             for (int i = 0; i < computeHash.Length; i++)
             {
-                if(computeHash[i] != user.PasswordHash[i])
+                if (computeHash[i] != user.PasswordHash[i])
                     return Unauthorized("Invalid Password");
             }
 
@@ -81,7 +82,8 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                KnownAs = user.KnownAS
             };
         }
 
