@@ -19,6 +19,7 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
 
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddScoped<LogUserActivity>();
 
             // Add repository interface and service
