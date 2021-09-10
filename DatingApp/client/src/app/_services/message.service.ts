@@ -9,9 +9,14 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
   providedIn: 'root'
 })
 export class MessageService {
+  
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
+
+  sendMessage(username: string, messageContent: string) {
+    throw new Error('Method not implemented.');
+  }
 
   getMessages(pageNumber: number, pageSize: number, container: string) {
     let params = getPaginationHeaders(pageNumber, pageSize);
