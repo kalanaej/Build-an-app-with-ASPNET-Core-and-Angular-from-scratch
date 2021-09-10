@@ -1,7 +1,6 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
-import { MembersService } from '../_services/members.service';
 import { MessageService } from '../_services/message.service';
 
 @Component({
