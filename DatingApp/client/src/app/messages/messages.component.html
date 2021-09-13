@@ -27,10 +27,16 @@
 
 <div class="row" *ngIf="messages?.length > 0">
     <table class="table table-hover"> 
-        <tr>
+        <tr *ngIf="container === 'Outbox'">
             <th style="width: 40%">Message</th>
-            <th style="width: 20%">From / To</th>
-            <th style="width: 20%">Sent / Recieved</th>
+            <th style="width: 20%">To</th>
+            <th style="width: 20%">Sent</th>
+            <th style="width: 20%">Action</th>
+        </tr>
+        <tr *ngIf="container !== 'Outbox'">
+            <th style="width: 40%">Message</th>
+            <th style="width: 20%">From</th>
+            <th style="width: 20%">Recieved</th>
             <th style="width: 20%">Action</th>
         </tr>
         <tr *ngFor="let message of messages" 
@@ -41,18 +47,18 @@
                 <p>{{ message.content }}</p>
             </td>
             <td>
-                <div *ngIf="container === 'Outbox'">
-                    <img src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
-                        alt="{{message.recipientUsername}}" 
-                        class="img-circle rounded-circle mr-2">
-                        <strong>{{ message.recipientUsername }}</strong>
-                </div>
                 <div *ngIf="container !== 'Outbox'">
                     <img src="{{message.senderPhotoUrl || './assets/user.png'}}" 
                         alt="{{message.senderUsername}}" 
                         class="img-circle rounded-circle mr-2">
                         <strong>{{ message.senderUsername }}</strong>
                 </div>
+                <div *ngIf="container === 'Outbox'">
+                    <img src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
+                        alt="{{message.recipientUsername}}" 
+                        class="img-circle rounded-circle mr-2">
+                        <strong>{{ message.recipientUsername }}</strong>
+                </div> 
             </td>
             <td>{{message.messsageSent | timeago}}</td>
             <td><button class="btn btn-danger">Delete</button></td>

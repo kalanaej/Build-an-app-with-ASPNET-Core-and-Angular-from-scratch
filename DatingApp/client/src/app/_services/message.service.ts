@@ -18,7 +18,7 @@ export class MessageService {
     throw new Error('Method not implemented.');
   }
 
-  getMessages(pageNumber: number, pageSize: number, container: string) {
+  getMessages(pageNumber: number, pageSize: number, container: string | number | boolean) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('Container', container);
     return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);
