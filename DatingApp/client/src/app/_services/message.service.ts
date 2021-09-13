@@ -14,10 +14,6 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  sendMessage(username: string, messageContent: string) {
-    throw new Error('Method not implemented.');
-  }
-
   getMessages(pageNumber: number, pageSize: number, container: string | number | boolean) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('Container', container);
@@ -26,5 +22,9 @@ export class MessageService {
 
   getMessageThread(username: string) {
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
+  }
+
+  sendMessage(username: string, content: string) {
+    return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
   }
 }
