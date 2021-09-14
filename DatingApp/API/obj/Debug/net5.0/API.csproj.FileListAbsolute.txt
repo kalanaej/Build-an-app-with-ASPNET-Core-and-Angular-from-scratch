@@ -64,3 +64,4 @@ D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\CloudinaryDotNet.dll
 D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Kodez\Udemy Courses\4. Build an app with ASPNET Core and Angular from scratch\Build-an-app-with-ASPNET-Core-and-Angular-from-scratch\DatingApp\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
