@@ -37,13 +37,7 @@ namespace API.Controllers
 
             var user = _mapper.Map<AppUser>(registerDto);
 
-            // Use hash function to encrypt passwords
-            using var hmac = new HMACSHA512();
-
             user.UserName = registerDto.Username.ToLower();
-            // Convert password into byte array
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-            user.PasswordSalt = hmac.Key;
 
             // Add the user
             _context.Users.Add(user);
@@ -68,16 +62,6 @@ namespace API.Controllers
 
             if (user == null)
                 return Unauthorized("Invalid username");
-
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-
-            var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-
-            for (int i = 0; i < computeHash.Length; i++)
-            {
-                if (computeHash[i] != user.PasswordHash[i])
-                    return Unauthorized("Invalid Password");
-            }
 
             return new UserDto
             {
